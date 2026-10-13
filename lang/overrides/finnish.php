@@ -129,6 +129,18 @@ $_LANG['public organizations'] = "Julkiset organisaatiot";
 $_LANG['other subjects'] = "Muut tahot";
 $_LANG['non natural foreigners'] = "Ulkomaiset ei-luonnolliset henkilöt";
 
+// WHMCS:n sisäänrakennetut avaimet .EU-tunnukselle
+$_LANG['euTldEntityType'] = "Haltijan tyyppi (.EU)";
+$_LANG['eu_country_of_citizenship'] = "Kansalaisuusmaa";
+
+// .EU pudotusvalikoiden suorat käännökset
+$_LANG['Company - Undertakings having their registered office or central administration and/or principal place of business within the European Community'] = "Yritys - Rekisteröity toimipaikka, keskushallinto ja/tai pääasiallinen liiketoimintapaikka Euroopan yhteisössä";
+$_LANG['Individual - Natural persons resident within the European Community'] = "Yksityishenkilö - Euroopan yhteisön alueella asuva luonnollinen henkilö";
+$_LANG['Organization - Organizations established within the European Community without prejudice to the application of national law'] = "Organisaatio - Euroopan yhteisön alueelle sijoittautunut organisaatio";
+
+// .EU ohjetekstin käännös
+$_LANG['EURid Geographical Restrictions. In order to register a .EU domain name, you must meet certain eligibility requirements.'] = "EURid maarajoitukset: Rekisteröidäksesi .EU-verkkotunnuksen, sinun tulee täyttää asuinpaikkaan tai sijoittautumiseen liittyvät ehdot.";
+
 
 // DNS Management
 $_LANG['nordname_dns_management_title'] = "DNS-hallinta";

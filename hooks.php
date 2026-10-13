@@ -141,7 +141,7 @@ add_hook('AcceptOrder', 1, function($vars) {
         update_query('tbldomains', array("registrar" => "nordname"), ['orderid' => $vars['orderid']]);
 });
 
-/// mb24-edit: Translate .IT domain fields on the fly (reads from $_LANG overrides)
+// mb24-edit: Translate additional domain fields on the fly (reads from $_LANG overrides)
 add_hook('ClientAreaPageCart', 1, function($vars) {
     global $_LANG; // mb24-edit: Import WHMCS language variables
     
@@ -149,15 +149,26 @@ add_hook('ClientAreaPageCart', 1, function($vars) {
         $domains = $vars['domains'];
         if (is_array($domains)) {
             
-            // mb24-edit: Define the English terms to be translated
+            // mb24-edit: Define description texts to translate
+            $descriptionOptions = [
+                'Legal type of registrant',
+                'EURid Geographical Restrictions. In order to register a .EU domain name, you must meet certain eligibility requirements.'
+            ];
+
+            // mb24-edit: Define dropdown options to translate
             $dropdownOptions = [
+                // .IT
                 'Italian and foreign natural persons',
                 'Companies/one man companies',
                 'Freelance workers/professionals',
                 'non-profit organizations',
                 'public organizations',
                 'other subjects',
-                'non natural foreigners'
+                'non natural foreigners',
+                // .EU
+                'Company - Undertakings having their registered office or central administration and/or principal place of business within the European Community',
+                'Individual - Natural persons resident within the European Community',
+                'Organization - Organizations established within the European Community without prejudice to the application of national law'
             ];
             
             foreach ($domains as $k => $domain) {
@@ -165,12 +176,14 @@ add_hook('ClientAreaPageCart', 1, function($vars) {
                     $newFields = [];
                     foreach ($domain['fields'] as $key => $fieldHTML) {
                         
-                        // mb24-edit: Translate the description text if a translation exists in the language file
-                        if (isset($_LANG['Legal type of registrant'])) {
-                            $fieldHTML = str_replace('Legal type of registrant', $_LANG['Legal type of registrant'], $fieldHTML);
+                        // mb24-edit: Translate descriptions dynamically
+                        foreach ($descriptionOptions as $enDesc) {
+                            if (isset($_LANG[$enDesc])) {
+                                $fieldHTML = str_replace($enDesc, $_LANG[$enDesc], $fieldHTML);
+                            }
                         }
                         
-                        // mb24-edit: Translate the dropdown options dynamically
+                        // mb24-edit: Translate dropdown options dynamically
                         foreach ($dropdownOptions as $enText) {
                             if (isset($_LANG[$enText])) {
                                 $fieldHTML = str_replace('>' . $enText . '<', '>' . $_LANG[$enText] . '<', $fieldHTML);
