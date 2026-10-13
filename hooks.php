@@ -141,4 +141,50 @@ add_hook('AcceptOrder', 1, function($vars) {
         update_query('tbldomains', array("registrar" => "nordname"), ['orderid' => $vars['orderid']]);
 });
 
+/// mb24-edit: Translate .IT domain fields on the fly (reads from $_LANG overrides)
+add_hook('ClientAreaPageCart', 1, function($vars) {
+    global $_LANG; // mb24-edit: Import WHMCS language variables
+    
+    if ($vars['templatefile'] == 'configuredomains') {
+        $domains = $vars['domains'];
+        if (is_array($domains)) {
+            
+            // mb24-edit: Define the English terms to be translated
+            $dropdownOptions = [
+                'Italian and foreign natural persons',
+                'Companies/one man companies',
+                'Freelance workers/professionals',
+                'non-profit organizations',
+                'public organizations',
+                'other subjects',
+                'non natural foreigners'
+            ];
+            
+            foreach ($domains as $k => $domain) {
+                if (isset($domain['fields']) && is_array($domain['fields'])) {
+                    $newFields = [];
+                    foreach ($domain['fields'] as $key => $fieldHTML) {
+                        
+                        // mb24-edit: Translate the description text if a translation exists in the language file
+                        if (isset($_LANG['Legal type of registrant'])) {
+                            $fieldHTML = str_replace('Legal type of registrant', $_LANG['Legal type of registrant'], $fieldHTML);
+                        }
+                        
+                        // mb24-edit: Translate the dropdown options dynamically
+                        foreach ($dropdownOptions as $enText) {
+                            if (isset($_LANG[$enText])) {
+                                $fieldHTML = str_replace('>' . $enText . '<', '>' . $_LANG[$enText] . '<', $fieldHTML);
+                            }
+                        }
+                        
+                        $newFields[$key] = $fieldHTML;
+                    }
+                    $domains[$k]['fields'] = $newFields;
+                }
+            }
+            return ['domains' => $domains];
+        }
+    }
+});
+
 ?>

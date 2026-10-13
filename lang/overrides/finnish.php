@@ -111,6 +111,25 @@ $_LANG['Private persons: ID card or passport number'] = "Yksityishenkilöille: S
 $_LANG['Business customers: Company registration number'] = "Yritysasiakkaille: Y-tunnus";
 $_LANG['For private persons not resident in Finland: Birth date in format YYYY-MM-DD'] = "Vain yksityishenkilöille, joilla ei ole henkilötunnusta. Muodossa YYYY-MM-DD";
 
+// .IT-tunnuksen kenttien otsikot (LangVar-avaimilla)
+$_LANG['ittldlegaltype'] = "Haltijan oikeudellinen muoto";
+$_LANG['ittldtaxid'] = "Verotunniste (HETU tai Y-tunnus)";
+$_LANG['ittlddata'] = "Julkaise henkilötiedot (WHOIS)";
+$_LANG['ittldsec3'] = "Hyväksyn .IT-rekisterin sopimusehdot (Osa 3)";
+$_LANG['ittldsec5'] = "Hyväksyn .IT-rekisterin sopimusehdot (Osa 5)";
+$_LANG['ittldsec6'] = "Hyväksyn .IT-rekisterin sopimusehdot (Osa 6)";
+$_LANG['ittldsec7'] = "Hyväksyn .IT-rekisterin sopimusehdot (Osa 7)";
+
+// Pudotusvalikon vaihtoehtojen käännökset
+$_LANG['Italian and foreign natural persons'] = "Italialaiset ja ulkomaiset yksityishenkilöt";
+$_LANG['Companies/one man companies'] = "Yritykset / toiminimet";
+$_LANG['Freelance workers/professionals'] = "Freelancerit / ammatinharjoittajat";
+$_LANG['non-profit organizations'] = "Voittoa tavoittelemattomat järjestöt";
+$_LANG['public organizations'] = "Julkiset organisaatiot";
+$_LANG['other subjects'] = "Muut tahot";
+$_LANG['non natural foreigners'] = "Ulkomaiset ei-luonnolliset henkilöt";
+
+
 // DNS Management
 $_LANG['nordname_dns_management_title'] = "DNS-hallinta";
 $_LANG['nordname_dns_management_disabled_error'] = "DNS-hallinta ei ole käytössä tälle verkkotunnukselle.";
