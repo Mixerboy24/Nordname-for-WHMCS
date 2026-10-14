@@ -142,6 +142,7 @@ add_hook('AcceptOrder', 1, function($vars) {
 });
 
 // mb24-edit: Translate additional domain fields on the fly (reads from $_LANG overrides)
+// mb24-edit: Translate additional domain fields on the fly (reads from $_LANG overrides)
 add_hook('ClientAreaPageCart', 1, function($vars) {
     global $_LANG; // mb24-edit: Import WHMCS language variables
     
@@ -149,10 +150,16 @@ add_hook('ClientAreaPageCart', 1, function($vars) {
         $domains = $vars['domains'];
         if (is_array($domains)) {
             
-            // mb24-edit: Define description texts to translate
+            // mb24-edit: Define description texts and labels to translate
             $descriptionOptions = [
                 'Legal type of registrant',
-                'EURid Geographical Restrictions. In order to register a .EU domain name, you must meet certain eligibility requirements.'
+                'EURid Geographical Restrictions. In order to register a .EU domain name, you must meet certain eligibility requirements.',
+                'Identification Number',
+                'what\'s this?',
+                'ID Number',
+                'Company ID (ORGNR)',
+                'Private persons: your national ID number / "personnummer" in format YYMMDD-XXXX.',
+                'Business customers: your company registration number / "organisationsnummer".'
             ];
 
             // mb24-edit: Define dropdown options to translate
@@ -168,7 +175,16 @@ add_hook('ClientAreaPageCart', 1, function($vars) {
                 // .EU
                 'Company - Undertakings having their registered office or central administration and/or principal place of business within the European Community',
                 'Individual - Natural persons resident within the European Community',
-                'Organization - Organizations established within the European Community without prejudice to the application of national law'
+                'Organization - Organizations established within the European Community without prejudice to the application of national law',
+                // NORDNAME
+                'Private Person',
+                'Company',
+                'Association',
+                'Institution',
+                'Political Party',
+                'Township',
+                'Government',
+                'Public Community'
             ];
             
             foreach ($domains as $k => $domain) {
@@ -176,7 +192,12 @@ add_hook('ClientAreaPageCart', 1, function($vars) {
                     $newFields = [];
                     foreach ($domain['fields'] as $key => $fieldHTML) {
                         
-                        // mb24-edit: Translate descriptions dynamically
+                        // mb24-edit: Special safe replacement for "VAT" to avoid breaking HTML attributes
+                        if (isset($_LANG['VAT'])) {
+                            $fieldHTML = str_replace('VAT <sup', $_LANG['VAT'] . ' <sup', $fieldHTML);
+                        }
+
+                        // mb24-edit: Translate descriptions and labels dynamically
                         foreach ($descriptionOptions as $enDesc) {
                             if (isset($_LANG[$enDesc])) {
                                 $fieldHTML = str_replace($enDesc, $_LANG[$enDesc], $fieldHTML);

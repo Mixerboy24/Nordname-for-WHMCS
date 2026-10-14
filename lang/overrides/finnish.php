@@ -141,6 +141,18 @@ $_LANG['Organization - Organizations established within the European Community w
 // .EU ohjetekstin käännös
 $_LANG['EURid Geographical Restrictions. In order to register a .EU domain name, you must meet certain eligibility requirements.'] = "EURid maarajoitukset: Rekisteröidäksesi .EU-verkkotunnuksen, sinun tulee täyttää asuinpaikkaan tai sijoittautumiseen liittyvät ehdot.";
 
+// --- .SE ---
+
+// WHMCS Vakiokentät
+$_LANG['Identification Number'] = "Tunnus (HETU tai Y-tunnus)";
+$_LANG['VAT'] = "ALV-numero";
+$_LANG['what\'s this?'] = "mikä tämä on?";
+
+// Nordnamen omat .SE kentät ja ohjetekstit
+$_LANG['ID Number'] = "Henkilötunnus";
+$_LANG['Company ID (ORGNR)'] = "Y-tunnus (ORGNR)";
+$_LANG['Private persons: your national ID number / "personnummer" in format YYMMDD-XXXX.'] = "Yksityishenkilöille: Henkilötunnus muodossa VVKKKP-XXXX.";
+$_LANG['Business customers: your company registration number / "organisationsnummer".'] = "Yritysasiakkaille: Y-tunnus.";
 
 // DNS Management
 $_LANG['nordname_dns_management_title'] = "DNS-hallinta";
